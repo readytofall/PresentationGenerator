@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=devise-width, initial-scale=1">
     <title>Слайд</title>
     <style>
+
         .brd {
             padding: 2px; /* Поля вокруг текста */
         }
@@ -45,8 +46,12 @@
                         <div class="form-group">
                             <label for="slideTitle">Заголовок слайда</label>
                             <textarea class="form-control" rows="1" id="slideTitle" name="slideTitle">@ViewBag.SlideTitle</textarea>
+                            <input type="number" size="3" min="-10000" max="10000" value="0" step="1" id="titleVerticalOffset" name="titleVerticalOffset">@ViewBag.TitleVerticalOffset
+                            <input type="number" size="3" min="-10000" max="10000" value="0" step="1" id="titleHorizontalOffset" name="titleHorizontalOffset">@ViewBag.TitleHorizontalOffset
                             <label for="slideText">Текст слайда</label>
                             <textarea class="form-control" rows="5" id="slideText" name="slideText">@ViewBag.SlideText</textarea>
+                            <input type="number" size="3" min="-10000" max="10000" value="100" step="1" id="slideVerticalOffset" name="slideVerticalOffset">@ViewBag.SlideVerticalOffset
+                            <input type="number" size="3" min="-10000" max="10000" value="0" step="1" id="slideHorizontalOffset" name="slideHorizontalOffset">@ViewBag.SlideHorizontalOffset
                             <textarea class="d-none" rows="1" name="slideDir">@ViewBag.presDir</textarea>
                             <textarea class="d-none" rows="1" name="slideBg">@ViewBag.BackgroundPath</textarea>
                             <textarea class="d-none" rows="1" name="slideId">@ViewBag.SlideId</textarea>
@@ -57,24 +62,24 @@
                         </div>
                     </form>
 
-                <div class="container-fluid">
-                     <div class="row">
-                       <div class="brd">
-                            <a class="btn btn-secondary " href="@Url.Content(ViewBag.PreviousSlide)" role="button">Предыдущий слайд</a>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="brd">
+                                <a class="btn btn-secondary " href="@Url.Content(ViewBag.PreviousSlide)" role="button">Предыдущий слайд</a>
+                            </div>
+
+                            <div class="brd">
+                                <a class="btn btn-secondary " href="@Url.Content(ViewBag.NextSlide)" role="button">Следующий  слайд</a>
+                            </div>
+
+
                         </div>
-                        
-                         <div class="brd">
-                             <a class="btn btn-secondary " href="@Url.Content(ViewBag.NextSlide)" role="button">Следующий  слайд</a>
-                         </div>
-
-
-                     </div>
-                 </div>
+                    </div>
 
 
 
 
-        </div>
+                </div>
             </div>
 
             <div class="col-lg-8 p-5" style="background-color: #F8F8FF">
@@ -87,19 +92,31 @@
 
         </div>
     </div>
-<script>
-    $(document).ready(function () {
-        $('#slideText').summernote({
-            toolbar: [
-                // [groupName, [list of button]]
-                ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['color', ['color']]   
-            ]
+    <script>
+        $(document).ready(function () {
+            $('#slideText').summernote({
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']]
+                ]
+            });
         });
-    });
-</script>
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#slideTitle').summernote({
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']]
+                ]
+            });
+        });
+    </script>
 
-        
 
 </body>
 </html>

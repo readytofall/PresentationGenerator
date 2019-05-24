@@ -53,7 +53,7 @@ namespace Presentation_Generator.Controllers
         [HttpGet]
         public ActionResult Slide(int id, string name)
         {
-            var slidePaths = Directory.GetFiles(GetServerPath("Presentations/" + name + "/Slides")).ToList(); 
+            var slidePaths = Directory.GetFiles(GetServerPath("Presentations/" + name + "/Slides")).ToList();
             var slides = slidePaths
               .Select(path => "~/Presentations/" + name + "/Slides/" + Path.GetFileName(path)).ToList();
             if (id >= slides.Count) id = id - 1;
@@ -64,6 +64,11 @@ namespace Presentation_Generator.Controllers
             {
                 var slide = (Slide)jsonFormatter.ReadObject(fs);
                 ViewBag.SlideText = slide.Text;
+                ViewBag.SlideHorizontalOffset = slide.SlideHorizontalOffset;
+                ViewBag.SlideVerticalOffset = slide.SlideVerticalOffset;
+                ViewBag.TitleHorizontalOffset = slide.TitleHorizontalOffset;
+                ViewBag.TitleVerticalOffset = slide.TitleVerticalOffset;
+
                 ViewBag.SlideTitle = slide.Title;
                 ViewBag.BackgroundPath = slide.PathToBackgroundPicture;
                 ViewBag.Warning = (slide.PathToBackgroundPicture.Contains("default.jpg")) ?
@@ -87,12 +92,12 @@ namespace Presentation_Generator.Controllers
             CreatePresentationDir(presentationDir);
             var textsFile = upload.ToArray()[0];
             var backgroundsFile = upload.ToArray()[1];
-            if (backgroundsFile == null 
-                || !backgroundsFile.FileName.Contains(".zip") 
+            if (backgroundsFile == null
+                || !backgroundsFile.FileName.Contains(".zip")
                 || !IsBackgroundsExtracted(presentationDir, backgroundsFile))
-                {
-                    LoadDefaultBackground(presentationDir);
-                }
+            {
+                LoadDefaultBackground(presentationDir);
+            }
             if (textsFile != null && textsFile.FileName.Contains(".txt") && IsSlidesCreated(presentationDir, textsFile))
             {
                 return Redirect("/Home/Slide/0/" + presentationId);
@@ -101,12 +106,17 @@ namespace Presentation_Generator.Controllers
         }
 
         [HttpPost]
-        public RedirectResult Slide(string slideText, string slideTitle, string slideBg, string slideDir, string slideId, string slideName)
+        public RedirectResult Slide(string slideText, string slideTitle, string slideBg, string slideDir, string slideId, string slideName, string slideHorizontalOffset, string slideVerticalOffset, string titleHorizontalOffset, string titleVerticalOffset)
         {
             var modifiedSlide = new Slide();
             modifiedSlide.Title = slideTitle;
             modifiedSlide.Text = slideText;
             modifiedSlide.PathToBackgroundPicture = slideBg;
+            modifiedSlide.SlideHorizontalOffset = slideHorizontalOffset;
+            modifiedSlide.SlideVerticalOffset = slideVerticalOffset;
+            modifiedSlide.TitleHorizontalOffset = titleHorizontalOffset;
+            modifiedSlide.TitleVerticalOffset = titleVerticalOffset;
+
             SlideSaver.SaveSlideAsJpeg(modifiedSlide, slideDir + "/Slides/" + slideId + ".jpg");
             DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(Slide));
             using (FileStream fs = new FileStream(slideDir + "/SlidesJSON/" + slideId + ".json", FileMode.Create))
@@ -122,7 +132,7 @@ namespace Presentation_Generator.Controllers
             System.IO.File.Copy(GetServerPath("Presentations/default.jpg"), presentationDir + "/Backgrounds/default.jpg");
         }
 
-        
+
 
 
         public bool IsBackgroundsExtracted(string presentationDir, IFormFile backgroundsFile)
@@ -155,11 +165,11 @@ namespace Presentation_Generator.Controllers
             //var fileStream = new StreamReader(filePath, Encoding.UTF32);
             //var fileText = fileStream.ReadToEnd();
             //Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-            var fileText = System.IO.File.ReadAllText(filePath,Encoding.GetEncoding(1251));
+            var fileText = System.IO.File.ReadAllText(filePath, Encoding.GetEncoding(1251));
             if (!fileText.Contains("СЛАЙД"))
                 return false;
             var slideTexts = fileText
-                .Split(new [] { "СЛАЙД: ", "СЛАЙД:" }, StringSplitOptions.RemoveEmptyEntries);
+                .Split(new[] { "СЛАЙД: ", "СЛАЙД:" }, StringSplitOptions.RemoveEmptyEntries);
             var slides = new List<Slide>();
             foreach (var slideText in slideTexts)
             {
@@ -206,7 +216,7 @@ namespace Presentation_Generator.Controllers
         private void SaveSlides(List<Slide> slides, string presentationDir)
         {
             var jsonFormatter = new DataContractJsonSerializer(typeof(Slide));
-            for (var i = 0; i<slides.Count;i++)
+            for (var i = 0; i < slides.Count; i++)
             {
                 SlideSaver.SaveSlideAsJpeg(slides[i], presentationDir + "/Slides/" + i.ToString() + ".jpg");
                 using (var fs = new FileStream(presentationDir + "/SlidesJSON/" + i.ToString() + ".json", FileMode.OpenOrCreate))

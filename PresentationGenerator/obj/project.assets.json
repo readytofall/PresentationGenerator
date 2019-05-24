@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.2": {
+      "CoreHtmlToImage/1.0.5": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/CoreHtmlToImage.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/CoreHtmlToImage.dll": {}
+        }
+      },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
         "type": "package",
         "dependencies": {
@@ -4511,6 +4520,18 @@
     }
   },
   "libraries": {
+    "CoreHtmlToImage/1.0.5": {
+      "sha512": "5tuVZ5mPOBenyfBvJiVCVIXRGlnrVkvesFW1UerqOT5igirqTeougQSMGuiDqSow/T6y8hVBsVk2mv6A0AhcpA==",
+      "type": "package",
+      "path": "corehtmltoimage/1.0.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "corehtmltoimage.1.0.5.nupkg.sha512",
+        "corehtmltoimage.nuspec",
+        "lib/netstandard2.0/CoreHtmlToImage.dll"
+      ]
+    },
     "Microsoft.AspNet.WebApi.Client/5.2.6": {
       "sha512": "owAlEIUZXWSnkK8Z1c+zR47A0X6ykF4XjbPok4lQKNuciUfHLGPd6QnI+rt/8KlQ17PmF+I4S3f+m+Qe4IvViw==",
       "type": "package",
@@ -7553,12 +7574,11 @@
       ]
     },
     "runtime.native.System.Net.Http/4.3.0": {
-      "sha512": "ZVuZJqnnegJhd2k/PtAbbIcZ3aZeITq3sj06oKfMBSfphW3HDmk/t4ObvbOk/JA/swGR0LNqMksAh/f7gpTROg==",
+      "sha512": "guqHgQOK2eUgtJae2VKjNawBn1xjC0hfOt5wASHa60XHbIdCsQlqtvMsFG+3hy7yp88V+gi9fZCjubuDkeakcQ==",
       "type": "package",
       "path": "runtime.native.system.net.http/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/netstandard1.0/_._",
@@ -7619,7 +7639,7 @@
       ]
     },
     "runtime.osx.10.10-x64.runtime.native.System.Security.Cryptography.Apple/4.3.0": {
-      "sha512": "kVXCuMTrTlxq4XOOMAysuNwsXWpYeboGddNGpIgNSZmv1b6r/s/DPk0fYMB7Q5Qo4bY68o48jt4T4y5BVecbCQ==",
+      "sha512": "Kh9W4agE0r/hK8AX1LvyQI2NrKHBL8pO0gRoDTdDb0LL6Ta1Z2OtFx3lOaAE0ZpCUc/dt9Wzs3rA7a3IsKdOVA==",
       "type": "package",
       "path": "runtime.osx.10.10-x64.runtime.native.system.security.cryptography.apple/4.3.0",
       "files": [
@@ -8021,7 +8041,7 @@
       ]
     },
     "System.Collections.Specialized/4.3.0": {
-      "sha512": "Epx8PoVZR0iuOnJJDzp7pWvdfMMOAvpUo95pC4ScH2mJuXkKA2Y4aR3cG9qt2klHgSons1WFh4kcGW7cSXvrxg==",
+      "sha512": "NoPBj0ykejqAWW4p4gGtrrL+3c84ZLSvGnHgq422ew1Rj4WKj1FA8/BCybqC111EtgcqUl6ZJNFYYS22HLgbjA==",
       "type": "package",
       "path": "system.collections.specialized/4.3.0",
       "files": [
@@ -12301,6 +12321,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
+      "CoreHtmlToImage >= 1.0.5",
       "Microsoft.AspNetCore.App >= 2.2.0",
       "Microsoft.AspNetCore.Razor.Design >= 2.2.0",
       "Microsoft.NETCore.App >= 2.2.0",
@@ -12310,23 +12331,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Саша\\.nuget\\packages\\": {},
+    "C:\\Users\\User\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Саша\\source\\repos\\PresentationGenerator\\PresentationGenerator\\PresentationGenerator.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\PresentationGenerator\\PresentationGenerator\\PresentationGenerator.csproj",
       "projectName": "PresentationGenerator",
-      "projectPath": "C:\\Users\\Саша\\source\\repos\\PresentationGenerator\\PresentationGenerator\\PresentationGenerator.csproj",
-      "packagesPath": "C:\\Users\\Саша\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Саша\\source\\repos\\PresentationGenerator\\PresentationGenerator\\obj\\",
+      "projectPath": "C:\\Users\\User\\Documents\\GitHub\\PresentationGenerator\\PresentationGenerator\\PresentationGenerator.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\User\\Documents\\GitHub\\PresentationGenerator\\PresentationGenerator\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Саша\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -12350,6 +12371,10 @@
     "frameworks": {
       "netcoreapp2.2": {
         "dependencies": {
+          "CoreHtmlToImage": {
+            "target": "Package",
+            "version": "[1.0.5, )"
+          },
           "Microsoft.AspNetCore.App": {
             "suppressParent": "All",
             "target": "Package",
